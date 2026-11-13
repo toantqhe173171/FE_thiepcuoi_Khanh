@@ -63,8 +63,8 @@ const weddingInfo = {
     gallery: [
         "assets/images/gallery/IMG_6421.jpg",
         "assets/images/gallery/IMG_3379.jpg",
-        "assets/images/gallery/IMG_6423.jpg",
         "assets/images/gallery/IMG_6418.jpg",
+        "assets/images/gallery/IMG_2205.jpg",
         "assets/images/gallery/DSC08512.jpg",
         "assets/images/gallery/DSC08525.jpg",
         "assets/images/gallery/DSC08575.jpg",
@@ -295,10 +295,10 @@ function initEvents() {
     if (!eventsContainer) return;
 
     weddingInfo.events.forEach((item, idx) => {
-        // SVG simple icons are removed in Sora, replaced with top circular image
+        // Dedicated square cropped event images framing bride and groom perfectly
         const imgUrl = idx === 0
-            ? "assets/images/gallery/IMG_6423.jpg"
-            : "assets/images/gallery/IMG_3379.jpg";
+            ? "assets/images/event_tiec.jpg"
+            : "assets/images/event_le.jpg";
 
         const html = `
             <div class="event-card reveal">
