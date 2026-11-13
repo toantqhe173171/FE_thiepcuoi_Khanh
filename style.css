@@ -167,7 +167,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; color: var(
 }
 .person-oval div {
     width: 100%; height: 100%; border-radius: 50% / 60% 60% 40% 40%;
-    background-size: cover; background-position: center;
+    background-size: cover; background-position: top center;
 }
 .person-detail h3 { font-size: 2rem; color: var(--color-dark-green); margin-bottom: 5px; }
 .person-detail p { color: var(--color-text-gray); }
