@@ -80,6 +80,9 @@ const weddingInfo = {
 // MAIN LOGIC
 // ======================================
 document.addEventListener("DOMContentLoaded", () => {
+    // Đánh thức backend từ sớm ngay khi khách mở thiệp
+    fetch("https://be-thiepcuoi-khanh.onrender.com/ping").catch(() => {});
+    
     initDynamicData();
     initCountdown();
     initGallery();
