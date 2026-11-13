@@ -468,3 +468,37 @@ function initPetals() {
         container.appendChild(petal);
     }
 }
+
+// 12. COPY STK & TOAST NOTIFICATION
+function copySTK() {
+    const stk = weddingInfo.banking && weddingInfo.banking.main ? weddingInfo.banking.main.number : "0931657793";
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(stk).then(() => {
+            showToast("Đã sao chép số tài khoản: " + stk + " ❤️");
+        }).catch(() => {
+            fallbackCopy(stk);
+        });
+    } else {
+        fallbackCopy(stk);
+    }
+}
+
+function fallbackCopy(text) {
+    const tempInput = document.createElement("input");
+    tempInput.value = text;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+    showToast("Đã sao chép số tài khoản: " + text + " ❤️");
+}
+
+function showToast(msg) {
+    const toast = document.getElementById("toast-message");
+    if (!toast) return;
+    toast.innerText = msg;
+    toast.classList.add("show");
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 2800);
+}

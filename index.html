@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Thiệp Cưới | Ngọc Khánh & Hà Trang</title>
-    <meta name="description" content="Trân trọng kính mời quý khách đến dự tiệc cưới của chúng tôi.">
+    <meta name="description" content="Trân trọng kính mời quý khách đến dự tiệc cưới của Ngọc Khánh và Hà Trang.">
     <!-- Cấu hình chuẩn ảnh thu nhỏ (Thumbnail) khi gửi link qua Zalo, Facebook, iMessage -->
     <meta property="og:title" content="Thiệp Cưới | Ngọc Khánh & Hà Trang">
     <meta property="og:description" content="Trân trọng kính mời quý khách đến dự lễ cưới của Ngọc Khánh và Hà Trang">
@@ -23,9 +23,9 @@
         <source src="music-src-placeholder" type="audio/mpeg">
     </audio>
 
-    <!-- FLOATING BUTTONS -->
+    <!-- FLOATING CONTROLS -->
     <div class="floating-music">
-        <button id="music-toggle" class="float-btn" aria-label="Toggle Music">
+        <button id="music-toggle" class="float-btn" aria-label="Toggle Music" title="Bật/Tắt nhạc">
             <svg viewBox="0 0 24 24" stroke-width="1.5">
                 <path d="M9 18V5L21 3V16" stroke="currentColor" fill="none" stroke-linecap="round"
                     stroke-linejoin="round" />
@@ -36,7 +36,7 @@
     </div>
 
     <div class="floating-actions">
-        <button class="float-btn" onclick="scrollToBank()" aria-label="Gửi quà mừng">
+        <button class="float-btn" onclick="scrollToBank()" aria-label="Gửi quà mừng" title="Hộp tâm giao">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path d="M20 12V22H4V12" stroke-linecap="round" stroke-linejoin="round"></path>
                 <path d="M22 7H2V12H22V7Z" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -47,7 +47,7 @@
                     stroke-linejoin="round"></path>
             </svg>
         </button>
-        <button class="float-btn" onclick="scrollToMap()" aria-label="Bản đồ chỉ đường">
+        <button class="float-btn" onclick="scrollToMap()" aria-label="Bản đồ chỉ đường" title="Bản đồ chỉ đường">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z" />
                 <circle cx="12" cy="10" r="3" />
@@ -55,14 +55,30 @@
         </button>
     </div>
 
-    <!-- 1. WELCOME SCREEN -->
+    <!-- 1. WELCOME SCREEN - LUXURY ENVELOPE -->
     <section id="welcome-screen">
-        <div class="welcome-content">
-            <p class="wedding-date-str"></p>
-            <h1 class="dance-text"><span class="grooms-name"></span><br>& <span class="brides-name"></span></h1>
-            <p style="margin-top: 1rem; color: var(--color-text-gray);">Trân trọng kính mời</p>
-            <br>
-            <button class="btn" onclick="openInvitation()">Mở Thiệp</button>
+        <div class="welcome-envelope">
+            <div class="envelope-stamp">
+                <div class="stamp-monogram">K & T</div>
+            </div>
+            <p class="envelope-subtitle">Save The Date</p>
+            <h1 class="dance-text"><span class="grooms-name">Ngọc Khánh</span><br>&<br><span class="brides-name">Hà Trang</span></h1>
+            
+            <div class="envelope-divider">
+                <span class="divider-line"></span>
+                <span class="divider-leaf">❦</span>
+                <span class="divider-line"></span>
+            </div>
+            
+            <p class="wedding-date-str" style="letter-spacing: 3px; font-weight: 600; color: var(--color-gold);">03 . 12 . 2026</p>
+            <p class="envelope-invitation">Trân trọng kính mời Quý khách<br>tới chung vui trong ngày hạnh phúc của chúng tôi</p>
+            
+            <button class="wax-seal-btn" onclick="openInvitation()" aria-label="Mở thiệp cưới">
+                <div class="wax-seal-circle">
+                    <span class="wax-seal-icon">💌</span>
+                    <span class="wax-seal-text">MỞ THIỆP</span>
+                </div>
+            </button>
         </div>
     </section>
 
@@ -75,35 +91,84 @@
                 <p class="hero-title"></p>
                 <div class="hero-arch-image"></div>
                 <h1 class="dance-text"><span class="grooms-name"></span><br>&<br><span class="brides-name"></span></h1>
-                <p class="wedding-date-str" style="margin-top:10px; font-weight: 500;"></p>
+                <p class="wedding-date-str" style="margin-top: 10px; font-weight: 600; letter-spacing: 2px; color: var(--color-gold);"></p>
             </div>
 
-            <!-- COUNTDOWN IN LINE -->
-            <div id="countdown" style="margin-top: 3rem; text-align: center; position: relative; z-index: 2;">
-                <p style="font-family: var(--font-heading); color: var(--color-dark-green); text-transform: uppercase;">
-                    Lễ cưới sẽ diễn ra sau</p>
-                <div class="cd-timer display-flex gap-15 justify-center mt-3 reveal"
-                    style="display:flex; justify-content:center; gap: 15px; margin-top:15px;">
-                    <div
-                        style="background: var(--white); padding: 10px; min-width: 60px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                        <span id="cd-days"
-                            style="font-size: 1.5rem; font-weight: 600; color: var(--color-sage-green);">00</span><br><small>Ngày</small>
+            <!-- COUNTDOWN TIMER -->
+            <div id="countdown" class="reveal">
+                <p class="countdown-label">Lễ cưới sẽ diễn ra sau</p>
+                <div class="cd-timer">
+                    <div class="cd-box">
+                        <span id="cd-days" class="cd-num">00</span>
+                        <span class="cd-unit">Ngày</span>
                     </div>
-                    <div
-                        style="background: var(--white); padding: 10px; min-width: 60px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                        <span id="cd-hours"
-                            style="font-size: 1.5rem; font-weight: 600; color: var(--color-sage-green);">00</span><br><small>Giờ</small>
+                    <div class="cd-box">
+                        <span id="cd-hours" class="cd-num">00</span>
+                        <span class="cd-unit">Giờ</span>
                     </div>
-                    <div
-                        style="background: var(--white); padding: 10px; min-width: 60px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                        <span id="cd-minutes"
-                            style="font-size: 1.5rem; font-weight: 600; color: var(--color-sage-green);">00</span><br><small>Phút</small>
+                    <div class="cd-box">
+                        <span id="cd-minutes" class="cd-num">00</span>
+                        <span class="cd-unit">Phút</span>
                     </div>
-                    <div
-                        style="background: var(--white); padding: 10px; min-width: 60px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                        <span id="cd-seconds"
-                            style="font-size: 1.5rem; font-weight: 600; color: var(--color-sage-green);">00</span><br><small>Giây</small>
+                    <div class="cd-box">
+                        <span id="cd-seconds" class="cd-num">00</span>
+                        <span class="cd-unit">Giây</span>
                     </div>
+                </div>
+            </div>
+
+            <!-- MINI WEDDING CALENDAR (THÁNG 12/2026) -->
+            <div class="calendar-card reveal">
+                <h3>Tháng 12 / 2026</h3>
+                <div class="calendar-grid">
+                    <div class="cal-head">T2</div>
+                    <div class="cal-head">T3</div>
+                    <div class="cal-head">T4</div>
+                    <div class="cal-head">T5</div>
+                    <div class="cal-head">T6</div>
+                    <div class="cal-head">T7</div>
+                    <div class="cal-head">CN</div>
+                    
+                    <!-- Days -->
+                    <div class="cal-cell empty"></div>
+                    <div class="cal-cell">1</div>
+                    <div class="cal-cell event-day" title="Tiệc Cưới (Bữa cơm thân mật)">2</div>
+                    <div class="cal-cell wedding-day" title="Lễ Thành Hôn">
+                        3
+                        <span class="cal-heart-badge">❤️</span>
+                    </div>
+                    <div class="cal-cell">4</div>
+                    <div class="cal-cell">5</div>
+                    <div class="cal-cell">6</div>
+                    <div class="cal-cell">7</div>
+                    <div class="cal-cell">8</div>
+                    <div class="cal-cell">9</div>
+                    <div class="cal-cell">10</div>
+                    <div class="cal-cell">11</div>
+                    <div class="cal-cell">12</div>
+                    <div class="cal-cell">13</div>
+                    <div class="cal-cell">14</div>
+                    <div class="cal-cell">15</div>
+                    <div class="cal-cell">16</div>
+                    <div class="cal-cell">17</div>
+                    <div class="cal-cell">18</div>
+                    <div class="cal-cell">19</div>
+                    <div class="cal-cell">20</div>
+                    <div class="cal-cell">21</div>
+                    <div class="cal-cell">22</div>
+                    <div class="cal-cell">23</div>
+                    <div class="cal-cell">24</div>
+                    <div class="cal-cell">25</div>
+                    <div class="cal-cell">26</div>
+                    <div class="cal-cell">27</div>
+                    <div class="cal-cell">28</div>
+                    <div class="cal-cell">29</div>
+                    <div class="cal-cell">30</div>
+                    <div class="cal-cell">31</div>
+                </div>
+                <div class="calendar-legend">
+                    <span class="legend-item"><span class="legend-dot dot-event"></span> 02/12: Tiệc cưới</span>
+                    <span class="legend-item"><span class="legend-dot dot-wedding"></span> 03/12: Lễ thành hôn</span>
                 </div>
             </div>
         </section>
@@ -111,35 +176,30 @@
         <!-- INTRO (FAMILY & COUPLE) -->
         <section id="intro">
             <h2 class="section-title">Cô Dâu & Chú Rể</h2>
+            <div class="quote-box reveal">
+                Tình yêu không phải là nhìn nhau, mà là cùng nhau nhìn về một hướng trên con đường hạnh phúc tương lai.
+            </div>
             <div class="intro-grid">
                 <div class="person-card reveal">
                     <div class="person-oval">
-                        <div style="background-image: url('assets/images/groom_oval.jpg')">
-                        </div>
+                        <div style="background-image: url('assets/images/groom_oval.jpg')"></div>
                     </div>
                     <div class="person-detail">
-                        <h3 class="grooms-name"></h3>
-                        <p style="color: var(--color-sage-green); font-style: italic; margin-bottom: 10px;">Nhà Trai
-                        </p>
-                        <p>Ông: <strong class="family-groom-grandpa"></strong><br>Bà: <strong
-                                class="family-groom-grandma"></strong></p>
-                        <p style="font-size: 0.8rem; margin-top: 5px; color: var(--color-text-gray);"><em
-                                class="family-groom-address"></em></p>
+                        <span class="person-tag">Nhà Trai</span>
+                        <h3 class="grooms-name">Ngọc Khánh</h3>
+                        <p style="margin-top: 8px;">Ông: <strong class="family-groom-grandpa"></strong><br>Bà: <strong class="family-groom-grandma"></strong></p>
+                        <p style="font-size: 0.85rem; margin-top: 8px; color: var(--color-text-muted);"><em class="family-groom-address"></em></p>
                     </div>
                 </div>
                 <div class="person-card reveal">
                     <div class="person-oval">
-                        <div style="background-image: url('assets/images/bride_oval.jpg')">
-                        </div>
+                        <div style="background-image: url('assets/images/bride_oval.jpg')"></div>
                     </div>
                     <div class="person-detail">
-                        <h3 class="brides-name"></h3>
-                        <p style="color: var(--color-sage-green); font-style: italic; margin-bottom: 10px;">Nhà Gái
-                        </p>
-                        <p>Ông: <strong class="family-bride-grandpa"></strong><br>Bà: <strong
-                                class="family-bride-grandma"></strong></p>
-                        <p style="font-size: 0.8rem; margin-top: 5px; color: var(--color-text-gray);"><em
-                                class="family-bride-address"></em></p>
+                        <span class="person-tag">Nhà Gái</span>
+                        <h3 class="brides-name">Hà Trang</h3>
+                        <p style="margin-top: 8px;">Ông: <strong class="family-bride-grandpa"></strong><br>Bà: <strong class="family-bride-grandma"></strong></p>
+                        <p style="font-size: 0.85rem; margin-top: 8px; color: var(--color-text-muted);"><em class="family-bride-address"></em></p>
                     </div>
                 </div>
             </div>
@@ -148,6 +208,7 @@
         <!-- PHOTO ALBUM -->
         <section id="gallery">
             <h2 class="section-title">Khoảnh Khắc</h2>
+            <p class="gallery-intro reveal">Những giây phút ngọt ngào trên hành trình tình yêu</p>
             <div class="gallery-grid" id="gallery-grid">
                 <!-- Images rendered via JS -->
             </div>
@@ -168,10 +229,11 @@
                 <!-- Data rendered via JS -->
             </div>
 
+            <!-- GOOGLE MAPS -->
             <div class="map-container reveal" id="map-section">
-                <h3 style="color: var(--color-dark-green); margin-bottom: 10px;">Bản Đồ Chỉ Đường</h3>
+                <h3 style="color: var(--color-sage-dark); margin-bottom: 12px; font-size: 1.5rem;">Bản Đồ Chỉ Đường</h3>
                 <div id="map-click-area"
-                    style="cursor: pointer; position: relative; border-radius: 8px; overflow: hidden;"
+                    style="cursor: pointer; position: relative; border-radius: 14px; overflow: hidden;"
                     title="Bấm để xem bản đồ chi tiết">
                     <iframe id="map-iframe"
                         src="https://maps.google.com/maps?q=20.3136215,105.9477909&z=16&output=embed"
@@ -180,41 +242,46 @@
                     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10;"></div>
                 </div>
                 <br>
-                <a href="#" id="map-btn-link" target="_blank" rel="noopener" class="btn" style="margin-top: 10px;">Chỉ
-                    Đường Ngay</a>
+                <a href="#" id="map-btn-link" target="_blank" rel="noopener" class="btn" style="margin-top: 8px;">
+                    Chỉ Đường Trên Google Maps
+                </a>
             </div>
         </section>
 
         <!-- BANKING & QR -->
         <section id="banking" class="bank-section-ref">
             <h2 class="section-title">Hộp Tâm Giao</h2>
-            <p style="text-align: center; color: var(--color-text-gray); margin-bottom: 2rem;">Thật vui vì được gặp trực
-                tiếp và nhận lời chúc từ các bạn.<br>Nếu không bề tham dự, bạn có thể gửi món quà nhỏ qua đây nhé!</p>
+            <p style="text-align: center; color: var(--color-text-muted); margin-bottom: 2rem; max-width: 550px; margin-left: auto; margin-right: auto;">
+                Thật vui vì được đón tiếp và nhận lời chúc từ quý vị.<br>Nếu không thể trực tiếp tham dự, quý khách có thể gửi món quà mừng qua đây!
+            </p>
             <div class="banking-wrapper">
                 <div class="bank-card reveal" id="qr-main">
-                    <h3 style="color: var(--color-dark-green);">Quà Mừng</h3>
-                    <img src="assets/images/qr_khanh.jpg"
-                        alt="QR Mừng Cưới" class="bank-qr">
-                    <p style="color: var(--color-text-gray);">Ngân hàng: <strong class="bank-name"></strong></p>
-                    <p style="color: var(--color-text-gray);">STK: <strong class="acc-number"></strong></p>
-                    <p style="color: var(--color-text-gray);">Chủ TK: <strong class="acc-name"></strong></p>
+                    <h3>Quà Mừng Cưới</h3>
+                    <img src="assets/images/qr_khanh.jpg" alt="QR Mừng Cưới" class="bank-qr">
+                    <p class="bank-info-line">Ngân hàng: <strong class="bank-name"></strong></p>
+                    <p class="bank-info-line">STK: <strong class="acc-number"></strong></p>
+                    <p class="bank-info-line">Chủ TK: <strong class="acc-name"></strong></p>
+                    
+                    <button class="btn-copy-stk" onclick="copySTK()" aria-label="Sao chép số tài khoản">
+                        📋 Sao chép số tài khoản
+                    </button>
                 </div>
             </div>
         </section>
 
         <!-- GUESTBOOK FRONTEND -->
         <section id="rsvp">
-            <h2 class="section-title">SỔ LƯU BÚT</h2>
+            <h2 class="section-title">Sổ Lưu Bút</h2>
             <div class="rsvp-container reveal">
                 <form id="rsvp-form">
                     <div class="form-group">
-                        <input type="text" id="rsvp-name" required placeholder="Nhập tên của bạn*">
+                        <input type="text" id="rsvp-name" required placeholder="Nhập tên của bạn *">
                     </div>
                     <div class="form-group">
-                        <textarea id="rsvp-message" required rows="4" placeholder="Nhập lời chúc của bạn*"></textarea>
+                        <textarea id="rsvp-message" required rows="4" placeholder="Nhập lời chúc tốt đẹp gửi tới cô dâu & chú rể *"></textarea>
                     </div>
                     <div class="form-footer">
-                        <div class="magic-icon">🪄</div>
+                        <div class="magic-icon" title="Gửi gắm yêu thương">💌</div>
                         <button type="submit" id="submit-wish-btn" class="btn-submit-wish">GỬI LỜI CHÚC</button>
                     </div>
                 </form>
@@ -231,13 +298,16 @@
         <!-- FOOTER -->
         <footer>
             <div class="footer-thanks"
-                style="font-size: 1.1rem; margin-bottom: 1.5rem; max-width: 600px; margin: 0 auto 1.5rem;"></div>
+                style="font-size: 1.15rem; margin-bottom: 1.5rem; max-width: 600px; margin: 0 auto 1.5rem; font-family: var(--font-heading); font-style: italic;"></div>
             <h2 class="dance-text">Ngọc Khánh & Hà Trang</h2>
-            <p class="footer-end" style="font-size: 1rem; margin-top: 10px;"></p>
+            <p class="footer-end" style="font-size: 1rem; margin-top: 10px; opacity: 0.95;"></p>
             <br>
-            <p style="font-size: 0.8rem; opacity: 0.8;">&copy; 2026. Made by Trinh Quoc Toan ❤️ Contact: 0862508162.</p>
+            <p style="font-size: 0.8rem; opacity: 0.75;">&copy; 2026. Chúc hạnh phúc trăm năm ❤️</p>
         </footer>
     </main>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast-message" class="toast-message"></div>
 
     <script src="script.js"></script>
 </body>
