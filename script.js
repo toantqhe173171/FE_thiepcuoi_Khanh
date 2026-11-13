@@ -297,8 +297,8 @@ function initEvents() {
     weddingInfo.events.forEach((item, idx) => {
         // Dedicated square cropped event images framing bride and groom perfectly
         const imgUrl = idx === 0
-            ? "assets/images/event_tiec.jpg"
-            : "assets/images/event_le.jpg";
+            ? "assets/images/event_tiec.jpg?v=2"
+            : "assets/images/event_le.jpg?v=2";
 
         const html = `
             <div class="event-card reveal">
