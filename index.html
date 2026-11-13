@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Thiệp Cưới | Ngọc Khánh & Hà Trang</title>
+    <meta name="description" content="Trân trọng kính mời quý khách đến dự tiệc cưới của chúng tôi.">
+    <!-- Cấu hình chuẩn ảnh thu nhỏ (Thumbnail) khi gửi link qua Zalo, Facebook, iMessage -->
+    <meta property="og:title" content="Thiệp Cưới | Ngọc Khánh & Hà Trang">
+    <meta property="og:description" content="Trân trọng kính mời quý khách đến dự lễ cưới của Ngọc Khánh và Hà Trang">
+    <meta property="og:image" content="assets/images/gallery/IMG_6421.jpg">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="bg-floral"></div>
+    <div id="petals-container"></div>
+
+    <!-- AUDIO BACKGROUND -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="music-src-placeholder" type="audio/mpeg">
+    </audio>
+
+    <!-- FLOATING BUTTONS -->
+    <div class="floating-music">
+        <button id="music-toggle" class="float-btn" aria-label="Toggle Music">
+            <svg viewBox="0 0 24 24" stroke-width="1.5">
+                <path d="M9 18V5L21 3V16" stroke="currentColor" fill="none" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <circle cx="6" cy="18" r="3" fill="currentColor" />
+                <circle cx="18" cy="16" r="3" fill="currentColor" />
+            </svg>
+        </button>
+    </div>
+
+    <div class="floating-actions">
+        <button class="float-btn" onclick="scrollToBank()" aria-label="Gửi quà mừng">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20 12V22H4V12" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M22 7H2V12H22V7Z" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M12 22V7" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M12 7H7.5A2.5 2.5 0 0 1 5 4.5V4.5A2.5 2.5 0 0 1 7.5 2H12V7Z" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                <path d="M12 7H16.5A2.5 2.5 0 0 0 19 4.5V4.5A2.5 2.5 0 0 0 16.5 2H12V7Z" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+            </svg>
+        </button>
+        <button class="float-btn" onclick="scrollToMap()" aria-label="Bản đồ chỉ đường">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z" />
+                <circle cx="12" cy="10" r="3" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- 1. WELCOME SCREEN -->
+    <section id="welcome-screen">
+        <div class="welcome-content">
+            <p class="wedding-date-str"></p>
+            <h1 class="dance-text"><span class="grooms-name"></span><br>& <span class="brides-name"></span></h1>
+            <p style="margin-top: 1rem; color: var(--color-text-gray);">Trân trọng kính mời</p>
+            <br>
+            <button class="btn" onclick="openInvitation()">Mở Thiệp</button>
+        </div>
+    </section>
+
+    <!-- 2. MAIN CONTENT SCROLLER -->
+    <main id="main-content" class="hidden">
+
+        <!-- HERO SECTION -->
+        <section id="hero">
+            <div class="hero-arch reveal">
+                <p class="hero-title"></p>
+                <div class="hero-arch-image"></div>
+                <h1 class="dance-text"><span class="grooms-name"></span><br>&<br><span class="brides-name"></span></h1>
+                <p class="wedding-date-str" style="margin-top:10px; font-weight: 500;"></p>
+            </div>
+
+            <!-- COUNTDOWN IN LINE -->
+            <div id="countdown" style="margin-top: 3rem; text-align: center; position: relative; z-index: 2;">
+                <p style="font-family: var(--font-heading); color: var(--color-dark-green); text-transform: uppercase;">
+                    Lễ cưới sẽ diễn ra sau</p>
+                <div class="cd-timer display-flex gap-15 justify-center mt-3 reveal"
+                    style="display:flex; justify-content:center; gap: 15px; margin-top:15px;">
+                    <div
+                        style="background: var(--white); padding: 10px; min-width: 60px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                        <span id="cd-days"
+                            style="font-size: 1.5rem; font-weight: 600; color: var(--color-sage-green);">00</span><br><small>Ngày</small>
+                    </div>
+                    <div
+                        style="background: var(--white); padding: 10px; min-width: 60px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                        <span id="cd-hours"
+                            style="font-size: 1.5rem; font-weight: 600; color: var(--color-sage-green);">00</span><br><small>Giờ</small>
+                    </div>
+                    <div
+                        style="background: var(--white); padding: 10px; min-width: 60px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                        <span id="cd-minutes"
+                            style="font-size: 1.5rem; font-weight: 600; color: var(--color-sage-green);">00</span><br><small>Phút</small>
+                    </div>
+                    <div
+                        style="background: var(--white); padding: 10px; min-width: 60px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                        <span id="cd-seconds"
+                            style="font-size: 1.5rem; font-weight: 600; color: var(--color-sage-green);">00</span><br><small>Giây</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTRO (FAMILY & COUPLE) -->
+        <section id="intro">
+            <h2 class="section-title">Cô Dâu & Chú Rể</h2>
+            <div class="intro-grid">
+                <div class="person-card reveal">
+                    <div class="person-oval">
+                        <div style="background-image: url('assets/images/groom_oval.jpg')">
+                        </div>
+                    </div>
+                    <div class="person-detail">
+                        <h3 class="grooms-name"></h3>
+                        <p style="color: var(--color-sage-green); font-style: italic; margin-bottom: 10px;">Nhà Trai
+                        </p>
+                        <p>Ông: <strong class="family-groom-grandpa"></strong><br>Bà: <strong
+                                class="family-groom-grandma"></strong></p>
+                        <p style="font-size: 0.8rem; margin-top: 5px; color: var(--color-text-gray);"><em
+                                class="family-groom-address"></em></p>
+                    </div>
+                </div>
+                <div class="person-card reveal">
+                    <div class="person-oval">
+                        <div style="background-image: url('assets/images/bride_oval.jpg')">
+                        </div>
+                    </div>
+                    <div class="person-detail">
+                        <h3 class="brides-name"></h3>
+                        <p style="color: var(--color-sage-green); font-style: italic; margin-bottom: 10px;">Nhà Gái
+                        </p>
+                        <p>Ông: <strong class="family-bride-grandpa"></strong><br>Bà: <strong
+                                class="family-bride-grandma"></strong></p>
+                        <p style="font-size: 0.8rem; margin-top: 5px; color: var(--color-text-gray);"><em
+                                class="family-bride-address"></em></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHOTO ALBUM -->
+        <section id="gallery">
+            <h2 class="section-title">Khoảnh Khắc</h2>
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Images rendered via JS -->
+            </div>
+        </section>
+
+        <!-- LIGHTBOX -->
+        <div id="lightbox" onclick="closeLightbox()">
+            <span class="lc-close" onclick="closeLightbox()">&times;</span>
+            <span class="lc-prev" onclick="prevImage(event)">&#10094;</span>
+            <img id="lightbox-img" src="" alt="Zoomed gallery image">
+            <span class="lc-next" onclick="nextImage(event)">&#10095;</span>
+        </div>
+
+        <!-- EVENTS INFO -->
+        <section id="events">
+            <h2 class="section-title">Sự Kiện Cưới</h2>
+            <div class="events-wrapper" id="events-container">
+                <!-- Data rendered via JS -->
+            </div>
+
+            <div class="map-container reveal" id="map-section">
+                <h3 style="color: var(--color-dark-green); margin-bottom: 10px;">Bản Đồ Chỉ Đường</h3>
+                <div id="map-click-area"
+                    style="cursor: pointer; position: relative; border-radius: 8px; overflow: hidden;"
+                    title="Bấm để xem bản đồ chi tiết">
+                    <iframe id="map-iframe"
+                        src="https://maps.google.com/maps?q=20.3136215,105.9477909&z=16&output=embed"
+                        style="width: 100%; height: 350px; border: none; pointer-events: none;" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10;"></div>
+                </div>
+                <br>
+                <a href="#" id="map-btn-link" target="_blank" rel="noopener" class="btn" style="margin-top: 10px;">Chỉ
+                    Đường Ngay</a>
+            </div>
+        </section>
+
+        <!-- BANKING & QR -->
+        <section id="banking" class="bank-section-ref">
+            <h2 class="section-title">Hộp Tâm Giao</h2>
+            <p style="text-align: center; color: var(--color-text-gray); margin-bottom: 2rem;">Thật vui vì được gặp trực
+                tiếp và nhận lời chúc từ các bạn.<br>Nếu không bề tham dự, bạn có thể gửi món quà nhỏ qua đây nhé!</p>
+            <div class="banking-wrapper">
+                <div class="bank-card reveal" id="qr-main">
+                    <h3 style="color: var(--color-dark-green);">Quà Mừng</h3>
+                    <img src="assets/images/qr_khanh.jpg"
+                        alt="QR Mừng Cưới" class="bank-qr">
+                    <p style="color: var(--color-text-gray);">Ngân hàng: <strong class="bank-name"></strong></p>
+                    <p style="color: var(--color-text-gray);">STK: <strong class="acc-number"></strong></p>
+                    <p style="color: var(--color-text-gray);">Chủ TK: <strong class="acc-name"></strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- GUESTBOOK FRONTEND -->
+        <section id="rsvp">
+            <h2 class="section-title">SỔ LƯU BÚT</h2>
+            <div class="rsvp-container reveal">
+                <form id="rsvp-form">
+                    <div class="form-group">
+                        <input type="text" id="rsvp-name" required placeholder="Nhập tên của bạn*">
+                    </div>
+                    <div class="form-group">
+                        <textarea id="rsvp-message" required rows="4" placeholder="Nhập lời chúc của bạn*"></textarea>
+                    </div>
+                    <div class="form-footer">
+                        <div class="magic-icon">🪄</div>
+                        <button type="submit" id="submit-wish-btn" class="btn-submit-wish">GỬI LỜI CHÚC</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- WISHES BOARD -->
+        <section id="wishes">
+            <div id="wishes-container">
+                <!-- Wishes rendered via js from API -->
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-thanks"
+                style="font-size: 1.1rem; margin-bottom: 1.5rem; max-width: 600px; margin: 0 auto 1.5rem;"></div>
+            <h2 class="dance-text">Ngọc Khánh & Hà Trang</h2>
+            <p class="footer-end" style="font-size: 1rem; margin-top: 10px;"></p>
+            <br>
+            <p style="font-size: 0.8rem; opacity: 0.8;">&copy; 2026. Made by Trinh Quoc Toan ❤️ Contact: 0862508162.</p>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
