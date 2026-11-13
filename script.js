@@ -1,5 +1,5 @@
 const weddingInfo = {
-    apiUrl: "http://localhost:3000/api/wishes", // Đổi thành URL render khi deploy
+    apiUrl: "https://be-thiepcuoi-khanh.onrender.com/api/wishes",
     groomsName: "Ngọc Khánh",
     bridesName: "Hà Trang",
     weddingDate: "2026-12-03T11:00:00", // Countdown tới 11:00 03/12/2026
